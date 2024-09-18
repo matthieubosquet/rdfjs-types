@@ -88,14 +88,22 @@ function test_datafactory() {
 
     type NamedNodeExt = NamedNode & { someProp: string };
     const term1: NamedNode = dataFactory.fromTerm(<NamedNodeExt>{});
+    const term1ext: NamedNodeExt = dataFactory.fromTerm(<NamedNodeExt>{});
     type BlankNodeExt = BlankNode & { someProp: string };
     const term2: BlankNode = dataFactory.fromTerm(<BlankNodeExt>{});
+    const term2ext: BlankNodeExt = dataFactory.fromTerm(<BlankNodeExt>{});
     type LiteralExt = Literal & { someProp: string };
     const term3: Literal = dataFactory.fromTerm(<LiteralExt>{});
+    const term3ext: LiteralExt = dataFactory.fromTerm(<LiteralExt>{});
     type VariableExt = Variable & { someProp: string };
     const term4: Variable = dataFactory.fromTerm(<VariableExt> {});
+    const term4ext: VariableExt = dataFactory.fromTerm(<VariableExt> {});
     type DefaultGraphExt = DefaultGraph & { someProp: string };
     const term5: DefaultGraph = dataFactory.fromTerm(<DefaultGraphExt>{});
+    const term5ext: DefaultGraphExt = dataFactory.fromTerm(<DefaultGraphExt>{});
+    type OutQuadExt = Quad & { someProp: string };
+    const term6: Quad = dataFactory.fromTerm(<OutQuadExt>{});
+    const term6ext: OutQuadExt = dataFactory.fromTerm<OutQuadExt>(<OutQuadExt>{});
 
     const quadFromQuad: Term = dataFactory.fromQuad(dataFactory.quad(
         dataFactory.namedNode("x"),
@@ -166,6 +174,10 @@ function test_datafactory_star_basequad() {
         const notEqualToOtherType: boolean = quadBobAge2.equals(dataFactory.namedNode('ex:something:else'));
     }
 
+    const datafactoryBaseQuadToQuad: DataFactory<BaseQuad, Quad> = <any> {};
+
+    const quadToBaseQuad1: BaseQuad = datafactoryBaseQuadToQuad.fromTerm(quadBobAge);
+
     const baseQuadTerm: BaseQuad = dataFactory.fromTerm(quadBobAge);
 
     const baseQuad: BaseQuad = dataFactory.fromQuad(quadBobAge);
@@ -180,6 +192,7 @@ function test_datafactory_star_basequad() {
     );
 
     const quadTerm: Quad = quadDataFactory.fromTerm(regularQuadBobAge);
+    const quadTerm2: Quad = datafactoryBaseQuadToQuad.fromTerm<Quad>(regularQuadBobAge);
 }
 
 function test_stream() {

@@ -293,12 +293,7 @@ export interface DataFactory<OutQuad extends BaseQuad = Quad, InQuad extends Bas
      * @return A new instance of the term such that newTermInstance.equals(original) returns true.
      * @see Term
      */
-    fromTerm<T extends NamedNode>(original: T): NamedNode;
-    fromTerm<T extends BlankNode>(original: T): BlankNode;
-    fromTerm<T extends Literal>(original: T): Literal;
-    fromTerm<T extends Variable>(original: T): Variable;
-    fromTerm<T extends DefaultGraph>(original: T): DefaultGraph;
-    fromTerm<T extends Quad>(original: T): OutQuad;
+    fromTerm(original: InQuad): OutQuad;
     fromTerm<T extends Term>(original: T): T;
 
     /**
