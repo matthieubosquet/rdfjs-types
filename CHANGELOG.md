@@ -1,10 +1,16 @@
 # @rdfjs/types
 
-## 1.1.1
+## 1.1.2
 
 ### Patch Changes
 
-- Packaging Fix: Only package declaration files
+- 7d8ffd1: Version `1.1.1` was inadvertently published empty (fixes #49)
+
+## ~~1.1.1~~
+
+### ~~Patch Changes~~
+
+- ~~a631541: Only package declaration files~~
 
 ## 1.1.0
 
